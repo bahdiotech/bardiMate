@@ -71,15 +71,15 @@ export const MovieDetail = () => {
             <span>{movie.release_date ? movie.release_date : "null"}</span>
           </p>
           <p className="my-4">
-            <span className="mr-2 font-bold">IMDB Code:</span>
+            <span className="mr-2 font-bold">IMDB:</span>
             <a
               className="underline text-blue-400 hover:no-underline"
               target="_blank"
               rel="noreferrer"
               href={`https://www.imdb.com/title/${movie.imdb_id}`}
+              title={`IMDB Code: ${movie.imdb_id}`}
             >
-              {""}
-              {movie.imdb_id}{""}
+              Watch Trailer here!
             </a>
           </p>
           <p className="my-4">
