@@ -1,0 +1,47 @@
+ <Link
+        className="text-sm font-medium text-gray-900 underline hover:no-underline dark:text-white"
+        onClick={handleNavigate}
+      >
+        {/* <p>comments: {length ? length : 0}</p> */}
+      </Link>
+      
+      {/* <div className= {`${!toggle? 'hidden' : '' } screenn sm:w-[30rem] dark:bg-darkbg z-4 flex flex-col w-[0rem] h-[25rem] overflow-y-scroll overflow-x-hidden ml-2`}>
+      {toggle && comments}
+      </div> */}
+
+
+      /   const comments = movie.results
+//     ? movie.results.map((result, index) => (
+        
+//         <div className="cardd light:text-black" key={index}>
+          
+//             <h1>
+//               {result.author} <br/>{" "}
+//               <span className="text-[0.7rem] mt-[-3rem] dark:text-slate-300">
+//                 {result.author_details.username}
+//               </span>
+//             </h1>
+//             <p>{result.content}</p>
+//             <div className="flex items-center mt-2">
+//                 <span className="text-[1rem] font-thin"> <i> Rating: </i></span>
+           
+//             <Rating.Star />
+//             <p className='ml-2 text-sm font-bold text-gray-900 dark:text-slate-100'> 
+//               {! result.author_details.rating? 'null' : result.author_details.rating.toFixed(2)}
+//             </p>
+//             </div>
+//         </div>
+//       ))
+//     : "";
+
+//   const length = rating ? rating.length : "";
+
+//   const sum = rating.length > 0 ? rating.reduce((a, b) => a + b) : "";
+
+//   const overAllRating = sum ? (sum / length).toFixed(2) : "null";
+
+
+
+  const rating = movie.results
+    ? movie.results.map((result) => result.author_details.rating)
+    : "";
