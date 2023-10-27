@@ -78,11 +78,11 @@ export const MovieDetail = () => {
           </p>
           <p className="my-4">
             <span className="mr-2 font-bold">Budget:</span>
-            <span>${movie.budget ? nFormatter( movie.budget, 1) : "null"}</span>
+            <span>{movie.budget ? `$${nFormatter( movie.budget, 1)}` : "null"}</span>
           </p>
           <p className="my-4">
             <span className="mr-2 font-bold">Revenue:</span>
-            <span>${movie.revenue ? nFormatter(movie.revenue, 1) : "null"}</span>
+            <span>{movie.revenue ? `$${nFormatter(movie.revenue, 1)}` : "null"}</span>
           </p>
           <p className="my-4">
             <span className="mr-2 font-bold">Released Date:</span>
