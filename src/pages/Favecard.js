@@ -33,11 +33,11 @@ export const Favecard = ({ favorites, setFavorites }) => {
                 onClick={() => handleReset(filteredArr.map((fave) => fave.id))}
                 className={`${filteredArr.length < 1 ? 'hidden': ''} relative  top-2 text-center  bg-red-600  bottom-4 z-10 h-9 w-45 hover:bg-gradient-to-br`}
               > Clear Favorites</Button>
-              <div className="absolute  min-h-[900px] w-full flex justify-center items-center">
+              <div className="absolute  min-h-[400px] w-full flex justify-center items-center">
           <Link className={`${filteredArr.length >=1 ? 'hidden' : ''} `} to='/' ><Homebut>Add favorites</Homebut></Link>
           </div>
       </div>
-      <div className="min-h-[900px] w-full flex justify-start other:justify-evenly flex-wrap">
+      <div className="min-h-[600px] w-full flex justify-start other:justify-evenly flex-wrap">
         {filteredArr.map((favorite) => (
           <div
             key={favorite.id}
@@ -89,7 +89,7 @@ export const Favecard = ({ favorites, setFavorites }) => {
               onClick={() => handleDel(favorite.id)}
               className="absolute  bg-red-600 inset-x-7 bottom-4 z-10 h-9 w-45 hover:bg-gradient-to-br"
             >
-              Remove Favorites
+              Remove from Favorites
             </Button>
           </div>
         ))}
