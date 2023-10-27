@@ -4,3 +4,4 @@ export { Card } from "./Card";
 export { ScrollToTop } from "./ScrollToTop";
 export { Button } from "./Button";
 export { RatingCount } from "./RatingCount";
+export { ButtonWithIcon} from './BottonWithIcon'

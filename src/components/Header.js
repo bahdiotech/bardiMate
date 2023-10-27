@@ -8,6 +8,7 @@ export const Header = () => {
   const [darkMode, setDarkMode] = useState(
     JSON.parse(localStorage.getItem("darkMode")) || false
   );
+  
   const [hidden, setHidden] = useState(false);
   const navigate = useNavigate();
 
@@ -244,6 +245,16 @@ export const Header = () => {
                   }
                 >
                   Upcoming
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="movies/favorites"
+                  className={({ isActive }) =>
+                    isActive ? activeClass : inActiveClass
+                  }
+                >
+                  Favorites
                 </NavLink>
               </li>
             </ul>

@@ -45,7 +45,7 @@ export const Footer = () => {
               </a>
             </li>
             <li>
-              <a href="https://github.com/abbard139" target="_blank" className="hover:underline"
+              <a href="https://github.com/bahdiotech" target="_blank" className="hover:underline"
               rel="noreferrer">
                 Github
               </a>
