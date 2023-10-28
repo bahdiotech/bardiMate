@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import backup from "../assets/images/backup.png";
-import { RatingCount } from "../components";
+import { ButtonWithIcon, RatingCount } from "../components";
 import { useTittle } from "../hooks";
+import { Button } from "flowbite-react";
 
-export const MovieDetail = () => {
+
+export const MovieDetail = ({ favorites, setFavorites }) => {
   const params = useParams();
   const [movie, setMovie] = useState([]);
   let url = `https://api.themoviedb.org/3/movie/${params.id}?api_key=b80d59c33d6d57ed9c7e3713f91c188a`;
@@ -40,6 +42,24 @@ export const MovieDetail = () => {
     : backup;
 
   useTittle(movie.title);
+
+  const handleAdd = (id) => {
+
+    if (movie.id === id && favorites.every((todo) => todo.id !== id)) {
+      setFavorites([
+        ...favorites,
+        {
+          id: movie.id,
+          overview: movie.overview,
+          poster_path: movie.poster_path,
+          title: movie.title
+        },
+      ]);
+    } else {
+      alert(`you already added '${movie.title}' to your favorite`);
+    }
+    
+  };
 
   return (
     <main>
@@ -173,6 +193,24 @@ export const MovieDetail = () => {
             <span className="mr-2 font-bold">Tagline:</span>
             <span>{movie.tagline ? movie.tagline : "null"}</span>
           </p>
+          { favorites.every((todo) => todo.id !== movie.id)? 
+          (<ButtonWithIcon
+          onClick={() =>handleAdd(movie.id)}
+          className="static inset-x-5 bottom-4 z-10 h-12 w-[20rem] hover:bg-gradient-to-br"
+        >
+          Add to Favorites
+        </ButtonWithIcon>)
+       :  (<Button
+       gradientMonochrome="failure"
+       disabled
+       className="static  bg-red-600 inset-x-7 bottom-4 z-10 h-12 w-[20rem] hover:bg-gradient-to-br"
+     >
+       Added To favorites
+     </Button>)}
+        
+        </div>
+        <div>
+          
         </div>
       </section>
     </main>

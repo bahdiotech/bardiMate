@@ -1,30 +1,31 @@
 import { Link } from "react-router-dom";
 import backup from "../assets/images/backup.png";
 import { ButtonWithIcon } from "./BottonWithIcon";
+import { Button } from "flowbite-react";
 
-export const Card = ({ movie, favorites, setFavorites }) => {
+export const Card = ({ movie, favorites, setFavorites, handleClick }) => {
   const { id, title, overview, poster_path } = movie;
   const image = poster_path
     ? `https://image.tmdb.org/t/p/w500${poster_path}`
     : backup;
 
-  const handleAdd = (id) => {
+    const handleAdd = (id) => {
 
-    if (movie.id === id && favorites.every((todo) => todo.id !== id)) {
-      setFavorites([
-        ...favorites,
-        {
-          id: movie.id,
-          overview: movie.overview,
-          poster_path: movie.poster_path,
-          title: movie.title
-        },
-      ]);
-    } else {
-      alert(`you already added '${movie.title}' to your favorite`);
-    }
-    
-  };
+      if (movie.id === id && favorites.every((todo) => todo.id !== id)) {
+        setFavorites([
+          ...favorites,
+          {
+            id: movie.id,
+            overview: movie.overview,
+            poster_path: movie.poster_path,
+            title: movie.title
+          },
+        ]);
+      } else {
+        alert(`you already added '${movie.title}' to your favorite`);
+      }
+      
+    };
 
 
   return (
@@ -61,13 +62,23 @@ export const Card = ({ movie, favorites, setFavorites }) => {
             </p>
           )}
         </div>
-        <ButtonWithIcon
-          onClick={() =>handleAdd(id)}
-          className="absolute inset-x-7 bottom-4 z-10 h-9 w-45 hover:bg-gradient-to-br"
-        >
-          Add to Favorites
-        </ButtonWithIcon>
+        
+        { favorites.every((todo) => todo.id !== movie.id)? 
+          (<ButtonWithIcon
+            onClick={() =>handleAdd(id)}
+            className="absolute inset-x-7 bottom-4 z-10 h-9 w-45 hover:bg-gradient-to-br"
+          >
+            Add to Favorites
+          </ButtonWithIcon>)
+       :  (<Button
+       gradientMonochrome="failure"
+       disabled
+       className="absolute  bg-red-600 inset-x-7 bottom-4 z-10 h-9 w-45 hover:bg-gradient-to-br"
+     >
+       Added To favorites
+     </Button>)}
       </div>
+      
     </div>
   );
 };
