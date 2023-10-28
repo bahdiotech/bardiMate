@@ -2,7 +2,7 @@ import { useSearchParams } from "react-router-dom";
 import { Card } from "../components";
 import { useFetch, useTittle } from "../hooks";
 import {  } from "../hooks/useTittle";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { Button } from "flowbite-react";
 
 
@@ -17,6 +17,10 @@ export const Search = ({apiPath, favorites, setFavorites}) => {
   const queryTerm = searchParams.get('q')
   const {data: movies } = useFetch(apiPath, pageNum, queryTerm)
 useTittle(`Search Result for ${queryTerm}`)
+
+useEffect(() => {
+  window.scrollTo(0, 0);
+}, [pageNum]);
 
   return (
     <main>

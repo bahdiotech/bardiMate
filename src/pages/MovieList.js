@@ -1,7 +1,7 @@
 import { Button } from "flowbite-react";
-import { Card } from "../components";
+import { Card} from "../components";
 import { useFetch, useTittle } from "../hooks";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export const MovieList = ({ apiPath, title, favorites, setFavorites }) => {
   const [pageNum, setPageNum] = useState(1);
@@ -12,8 +12,16 @@ export const MovieList = ({ apiPath, title, favorites, setFavorites }) => {
   };
   const { data: movies } = useFetch(apiPath, pageNum);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pageNum]);
+
+  
+
   return (
+    
     <main>
+      
       <section className="max-w-7xl mx-auto py-7">
         <div className="flex justify-start other:justify-evenly flex-wrap">
           {movies.map((movie) => (
@@ -30,6 +38,7 @@ export const MovieList = ({ apiPath, title, favorites, setFavorites }) => {
       </section>
       <div className="flex  justify-between">
           <div>
+          
           <Button className={`${pageNum === 1? 'hidden' : ''} h-10`} onClick={() =>setPageNum(pageNum - 1)}>Previous Page</Button>
           </div>
           <div>
