@@ -8,7 +8,7 @@ import { Header, Footer } from './components/index';
 
 function App() {
 
-  const [value, setValue] = useState('a');
+  const [value, setValue] = useState('');
   return (
     
     <div className="App">
