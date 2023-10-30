@@ -13,7 +13,7 @@ export const MovieList = ({ apiPath, title, favorites, setFavorites }) => {
   const { data: movies } = useFetch(apiPath, pageNum);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    return window.scrollTo(0, 0);
   }, [pageNum]);
 
   

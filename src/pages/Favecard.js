@@ -18,27 +18,27 @@ export const Favecard = ({ favorites, setFavorites }) => {
     setFavorites([]);
   };
 
-  function removeDuplicates(data) {
-    return data.filter((value, index)=>  data.indexOf(value) === index)
-    };
-    
-  const filteredArr = removeDuplicates(favorites)
-  console.log(filteredArr)
-
   return (
     <section>
       <div className="flex justify-center">
-      <Button
-                gradientMonochrome="failure"
-                onClick={() => handleReset(filteredArr.map((fave) => fave.id))}
-                className={`${filteredArr.length < 1 ? 'hidden': ''} relative  top-2 text-center  bg-red-600  bottom-4 z-10 h-9 w-45 hover:bg-gradient-to-br`}
-              > Clear Favorites</Button>
-              <div className="absolute  min-h-[400px] w-full flex justify-center items-center">
-          <Link className={`${filteredArr.length >=1 ? 'hidden' : ''} `} to='/' ><Homebut>Add favorites</Homebut></Link>
-          </div>
+        <Button
+          gradientMonochrome="failure"
+          onClick={() => handleReset(favorites.map((fave) => fave.id))}
+          className={`${
+            favorites.length < 1 ? "hidden" : ""
+          } relative  top-2 text-center  bg-red-600  bottom-4 z-10 h-9 w-45 hover:bg-gradient-to-br`}
+        >
+          {" "}
+          Clear Favorites
+        </Button>
+        <div className="absolute  min-h-[400px] w-full flex justify-center items-center">
+          <Link className={`${favorites.length >= 1 ? "hidden" : ""} `} to="/">
+            <Homebut>Add favorites</Homebut>
+          </Link>
+        </div>
       </div>
       <div className="min-h-[600px] w-full flex justify-start other:justify-evenly flex-wrap">
-        {filteredArr.map((favorite) => (
+        {favorites.map((favorite) => (
           <div
             key={favorite.id}
             className="max-w-sm relative h-[50rem] overflow-hidden bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 m-4"

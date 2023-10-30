@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import './App.css';
 import { AllRoutes } from './routes/AllRoutes';
 import { Header, Footer } from './components/index';
 
 
+
 function App() {
+
+  const [value, setValue] = useState('a');
   return (
     
     <div className="App">
-      <Header />
-      <AllRoutes />
+      <Header value={value} setValue={setValue} />
+      <AllRoutes value={value} setValue={setValue} />
       <Footer />
     </div>
   );

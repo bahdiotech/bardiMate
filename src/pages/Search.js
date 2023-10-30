@@ -1,4 +1,4 @@
-import { useSearchParams } from "react-router-dom";
+// import { useSearchParams } from "react-router-dom";
 import { Card } from "../components";
 import { useFetch, useTittle } from "../hooks";
 import {  } from "../hooks/useTittle";
@@ -6,26 +6,32 @@ import { useState,useEffect } from "react";
 import { Button } from "flowbite-react";
 
 
-export const Search = ({apiPath, favorites, setFavorites}) => {
+export const Search = ({apiPath, favorites, setFavorites, value}) => {
   const [pageNum, setPageNum] = useState(1);
 
   const handleClick = () => {
     setPageNum(pageNum + 1);
   };
 
-  const [searchParams] = useSearchParams();
-  const queryTerm = searchParams.get('q')
-  const {data: movies } = useFetch(apiPath, pageNum, queryTerm)
-useTittle(`Search Result for ${queryTerm}`)
+  // const [searchParams] = useSearchParams();
+  // const queryTerm = searchParams.get('q')
+  const {data: movies } = useFetch(apiPath, pageNum, value)
+useTittle(`Search Result for ${value}`)
 
 useEffect(() => {
   window.scrollTo(0, 0);
 }, [pageNum]);
 
+// useEffect(() => {
+//   value.length === 0 || 
+// }, [input]);
+
   return (
     <main>
       <section className="text-2xl text-gray-700 dark:text-white">
-        <p>{movies.length === 0? `No result found for '${queryTerm}'`: `Search result for '${queryTerm}'` }</p>
+        {value.length > 0 && 
+        <p>{movies.length === 0? `No result found for '${value}'`: `Search result for '${value}'` }</p>
+}
       </section>
     <section className="max-w-7xl mx-auto py-7">
       <div className="flex justify-start other:justify-evenly flex-wrap">

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Logo from "../assets/logo.png";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
-export const Header = () => {
+export const Header = ({value, setValue}) => {
   const [sideBar, setSideBar] = useState(false);
   const [search, setSearch] = useState(false);
   const [darkMode, setDarkMode] = useState(
@@ -18,6 +18,18 @@ export const Header = () => {
     e.target.reset();
     return navigate(`/search?q=${queryTerm}`);
   };
+
+  const handleChange =(e) => {
+    setValue(e.target.value)
+  navigate(`/search?q=${value}`);
+
+  }
+
+  // useEffect(() => {
+  //   return navigate(`/search?q=${value}`)
+
+  // }, [value, navigate])
+  
 
   useEffect(() => {
     localStorage.setItem("darkMode", JSON.stringify(darkMode));
@@ -40,6 +52,18 @@ export const Header = () => {
     setSearch(false);
     setSideBar(!sideBar);
   };
+
+  
+
+ const handleMouseSearch=()=> {
+    setSearch(false)
+    setHidden(true)
+ }
+
+ const handleMouseSideBar=()=> {
+  setSideBar(false)
+  setHidden(true)
+}
 
   const searchIcon = <div className=" inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
   <svg
@@ -137,6 +161,9 @@ export const Header = () => {
               
                 <div className="relative">
                   <input
+                  onInput={() => value.length === 0 && navigate(`/`)}
+                  onChange={handleChange}
+                  value={value}
                   name="search"
                     type="text"
                     id="search"
@@ -187,12 +214,15 @@ export const Header = () => {
             <div className={`relative mt-3 md:hidden ${search ? "block" : "other:hidden"}`}>
               <form onSubmit={handleSubmit}>
                 <input
+                onChange={handleChange}
+                  value={value}
                   name="search"
                   type="text"
                   id="search-navbar-mobile"
                   className={` block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer`}
                   autoComplete="off"
                   placeholder=""
+                  onMouseOut={handleMouseSearch}
                 />
               </form>
               <label
@@ -203,7 +233,8 @@ export const Header = () => {
                   </label>
             </div>
             <ul
-            
+                 onMouseLeave={handleMouseSideBar}
+
               className={`${ sideBar ? "flex" : "other:hidden"} flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 res880:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700`}
             >
               <li>

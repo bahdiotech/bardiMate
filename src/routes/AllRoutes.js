@@ -5,7 +5,7 @@ import { Favecard } from "../pages/Favecard";
 import { useState } from "react";
 import { useEffect } from "react";
 
-export const AllRoutes = () => {
+export const AllRoutes = ({value, setValue}) => {
 
   const [favorites, setFavorites] = useState(JSON.parse(localStorage.getItem('favorites')) || []);
 
@@ -13,6 +13,7 @@ export const AllRoutes = () => {
     localStorage.setItem('favorites', JSON.stringify(favorites))
 
   }, [favorites])
+  
 
   
   
@@ -24,7 +25,7 @@ export const AllRoutes = () => {
         <Route path="/movies/popular" element={<MovieList  favorites={favorites} setFavorites={setFavorites} apiPath='movie/popular' title='Popular' />} />
         <Route path="/movies/top" element={<MovieList favorites={favorites} setFavorites={setFavorites} apiPath='movie/top_rated' title='TopRated' />} />
         <Route path="/movies/upcoming" element={<MovieList favorites={favorites} setFavorites={setFavorites} apiPath='movie/upcoming' title='Upcoming' />} />
-        <Route path="/search" element={<Search apiPath='search/movie' favorites={favorites} setFavorites={setFavorites} title='' />} />
+        <Route path="/search" element={<Search value={value} setValue={setValue} apiPath='search/movie' favorites={favorites} setFavorites={setFavorites} title='' />} />
         <Route path="*" element={<PageNotFound title='PageNotFound' />} />
         <Route path="/movies/favorites" element={<Favecard favorites={favorites} setFavorites={setFavorites} />} />
     </Routes>
